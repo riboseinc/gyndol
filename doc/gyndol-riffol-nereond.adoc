@@ -2,8 +2,6 @@
 
 image::images/gyndol-riffol-nereond.svg[]
 
-== Notes:
-
 Messages 1 and 2 are over a secure connection whereby User has
 authenticated (logged in directly, logged in over ssh or
 signed in via a web page).
@@ -25,13 +23,13 @@ session with Gyndol (message 5) which generates a new session ID
 (message 6). The session initiation is now complete. Nereond can
 reconnect using the new ID should this connection fail.
 
-Nereond asks for the fileset (messages 9 and 10) and unpacks
-it. Nereond then signals Riffol to reload (message 11), this time with
-the full configuration from the fileset.
+Gyndol sends the fileset (messages 9) and Nereond unpacks it. Nereond
+then signals Riffol to reload (message 10), this time with the full
+configuration from the fileset.
 
-Any changes to the fileset cause Gyndol to notify Nereond (message 12)
-which updates its local files and signals Riffol to reload again
-(message 11).
+Any change to the fileset (message 11) causes Gyndol to notify Nereond
+(message 9) which updates its local files and signals Riffol to reload
+again (message 10).
 
 Files with sensitive information can be held encrypted in Gyndol's
 fileset. Gyndol treats these as any other file but Nereond needs a key
