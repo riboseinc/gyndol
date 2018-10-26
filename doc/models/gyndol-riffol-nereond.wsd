@@ -1,0 +1,41 @@
+@startuml
+!include style.uml.inc
+hide footbox
+autonumber
+
+actor User
+activate User
+User -> Gyndol : Request new session
+activate Gyndol
+Gyndol ->> User : Session ID
+
+create Riffol
+User -> Riffol : Session ID and optional secret
+deactivate User
+create Nereond
+activate Riffol
+Riffol -> Nereond : Session ID
+activate Nereond
+Nereond -> Gyndol : Initiate session
+activate Gyndol
+Gyndol ->> Nereond : New session ID
+
+group optional
+  Nereond -> Gyndol : Decrypt secret
+  activate Gyndol
+  Gyndol -->> Nereond : Decrypted
+  deactivate Gyndol
+end
+
+loop
+  Gyndol -> Nereond : Fileset
+  Nereond -> Riffol : Reload
+  activate User
+  User -> Gyndol : Fileset update
+  deactivate User
+end
+Nereond -> Gyndol : Close
+deactivate Gyndol
+deactivate Nereond
+deactivate Gyndol
+@enduml
