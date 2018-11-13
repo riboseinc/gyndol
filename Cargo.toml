@@ -1,0 +1,17 @@
+[package]
+name = "gyndol"
+description = "Gyndol is a configuration server."
+version = "0.3.0"
+repository = "https://github.com/riboseinc/gyndol"
+authors = ["John Hedges <john@drystone.co.uk>", "Ribose Inc. <open.source@ribose.com>"]
+license = "BSD-2-Clause"
+exclude = [
+    "doc/**",
+    ".gitignore",
+    ".travis.yml",
+    ]
+
+[dependencies]
+base64 = "0.10"
+nereon = {path = "../rust-nereon"}
+nereon_derive = {path = "../rust-nereon/derive"}

@@ -1,0 +1,67 @@
+option dir {
+    short d
+    long dir
+    hint DIR
+    help "Directory under which to store filesets."
+    flags [takesvalue]
+    key ["fileset_dir"]
+    default /var/lib/gyndol/filesets
+}
+
+command add {
+    about "Adds a file with a path to a fileset."
+    option fileset {
+        key [command, add, fileset]
+        hint NAME
+        flags [required]
+        help "The name of the fileset to add into."
+    }
+    option path {
+        key [command, add, path]
+        hint PATH
+        flags [required]
+        help "Absolute destination path of the file being added."
+    }
+}
+
+command rm {
+    about "Removes a fileset or file from a fileset."
+    option fileset {
+        key [command, rm, fileset]
+        hint NAME
+        flags [required]
+        help "The name of the fileset to remove or to remove file from."
+    }
+    option path {
+        key [command, rm, path]
+        hint PATH
+        help "Absolute destination path of the file being removed."
+    }
+}
+
+command ls {
+    about "Lists the filesets or the contents of a fileset."
+    key [command, ls]
+    option fileset {
+        key [command, ls, fileset]
+        hint NAME
+        help "The name of the fileset to list."
+    }
+}
+
+command get {
+    about "Gets a file from a fileset and path."
+    option fileset {
+        key [command, get, fileset]
+        hint NAME
+        flags [required]
+        help "The name of the fileset containing the file to get."
+    }
+    option path {
+        key [command, get, path]
+        hint PATH
+        flags [required]
+        help "Absolute destination path of the file to get."
+    }
+}
+
